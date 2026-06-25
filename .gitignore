@@ -2,11 +2,8 @@
 data/budget.db
 data/shopping_profile.txt
 
-# Фото чеков (личные данные)
 receipts/
 
-# Fine-tuning (большие файлы, не для GitHub)
-# C:\unsloth-work\ — она вне проекта, не нужна
 
 # Python
 __pycache__/
@@ -33,4 +30,4 @@ desktop.ini
 # Логи
 *.log
 *.jsonl
-!finetune/data/dataset.jsonl
+!finetune/finetune/dataset.jsonl
