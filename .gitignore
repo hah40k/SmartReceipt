@@ -33,3 +33,4 @@ desktop.ini
 # Логи
 *.log
 *.jsonl
+!finetune/data/dataset.jsonl
