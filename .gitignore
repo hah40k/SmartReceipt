@@ -1,0 +1,35 @@
+# База данных и данные пользователя
+data/budget.db
+data/shopping_profile.txt
+
+# Фото чеков (личные данные)
+receipts/
+
+# Fine-tuning (большие файлы, не для GitHub)
+# C:\unsloth-work\ — она вне проекта, не нужна
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Conda / venv
+.conda/
+venv/
+.venv/
+env/
+
+# PyCharm
+.idea/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Логи
+*.log
+*.jsonl
