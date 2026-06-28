@@ -22,6 +22,7 @@ OLLAMA_TEXT_MODEL = "qwen3.5:4b"  # для текстовых задач: нор
 OLLAMA_EMBED_MODEL = "nomic-embed-text-v2-moe"  # мультиязычная модель с русским датасетом
 # Альтернатива: "bge-m3" — также хорошо для русского, можно сравнить качество
 OLLAMA_TIMEOUT = 180
+OLLAMA_ENRICH_MODEL = "receipt-extractor"
 
 # LLM-параметры
 LLM_TEMPERATURE = 0.1

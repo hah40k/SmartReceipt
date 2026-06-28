@@ -39,19 +39,12 @@ class OllamaClient:
     # ------------------------------------------------------------------
 
     def chat(
-        self,
-        messages: list[dict[str, Any]],
-        disable_thinking: bool = False,
-        prefill: str | None = None,
+            self,
+            messages: list[dict[str, Any]],
+            disable_thinking: bool = False,
+            prefill: str | None = None,
+            model: str | None = None,  # <- новый параметр последним
     ) -> str:
-        """
-        Отправляет список сообщений и возвращает текст ответа модели.
-
-        disable_thinking=True передаёт {"think": false} в options.
-        prefill — частичный ответ ассистента добавляемый последним сообщением.
-            Модель продолжает с этого места, не имея возможности начать <think>.
-            Prefill автоматически добавляется в начало возвращаемого текста.
-        """
         options: dict[str, Any] = {
             "temperature": self.temperature,
             "num_predict": self.max_tokens,
@@ -64,7 +57,7 @@ class OllamaClient:
             send_messages = messages + [{"role": "assistant", "content": prefill}]
 
         payload = {
-            "model": self.model,
+            "model": model or self.model,  # <- единственное изменение здесь
             "messages": send_messages,
             "stream": False,
             "options": options,
@@ -123,18 +116,23 @@ class OllamaClient:
         return result
 
     def chat_text(
-        self,
-        user_prompt: str,
-        system_prompt: str | None = None,
-        disable_thinking: bool = False,
-        prefill: str | None = None,
+            self,
+            user_prompt: str,
+            system_prompt: str | None = None,
+            disable_thinking: bool = False,
+            prefill: str | None = None,
+            model: str | None = None,  # <- добавить
     ) -> str:
-        """Удобный метод для простого текстового запроса."""
         messages: list[dict[str, Any]] = []
         if system_prompt:
             messages.append({"role": "system", "content": system_prompt})
         messages.append({"role": "user", "content": user_prompt})
-        return self.chat(messages, disable_thinking=disable_thinking, prefill=prefill)
+        return self.chat(
+            messages,
+            disable_thinking=disable_thinking,
+            prefill=prefill,
+            model=model,  # <- передать дальше
+        )
 
     def chat_vision(
         self,

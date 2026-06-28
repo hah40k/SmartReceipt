@@ -18,7 +18,7 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from config import OLLAMA_TEXT_MODEL  # noqa: F401  # оставлен для будущего использования
+from config import OLLAMA_TEXT_MODEL, OLLAMA_ENRICH_MODEL  # noqa: F401  # оставлен для будущего использования
 from src.llm.client import OllamaClient, OllamaError
 from src.llm.prompts import (
     ENRICH_SYSTEM,
@@ -183,6 +183,7 @@ class ReceiptExtractor:
                 user_prompt=prompt,
                 system_prompt=ENRICH_SYSTEM,
                 prefill="[",
+                model=OLLAMA_ENRICH_MODEL,
             )
         except OllamaError as exc:
             logger.warning("Ошибка 4b при enrich: %s", exc)
